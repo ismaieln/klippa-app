@@ -1,0 +1,23 @@
+{
+  "name": "klippa",
+  "version": "1.0.0",
+  "description": "pgp2021 project one",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ismaieln/klippa-app.git"
+  },
+  "author": "Ismaiel Alnabwani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ismaieln/klippa-app/issues"
+  },
+  "homepage": "https://github.com/ismaieln/klippa-app#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  }
+}

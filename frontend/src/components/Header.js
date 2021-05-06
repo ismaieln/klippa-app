@@ -8,9 +8,11 @@ const Header = () => {
   return (
     <header>
       <Navbar
-        className=' shadow p-2 mb-3 bg-body rounded'
+        className='shadow rounded'
         expand='lg'
         collapseOnSelect
+        bg='dark'
+        variant='dark'
       >
         <Container>
           <LinkContainer to='/'>

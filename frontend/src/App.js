@@ -9,9 +9,9 @@ const App = () => {
   return (
     <Router>
       <Header />
-      <main className='bg-info'>
+      <main>
         <Container>
-          <Route path='/' component={Home} />
+          <Route path='/' component={Home} exact />
         </Container>
       </main>
       <Footer />
