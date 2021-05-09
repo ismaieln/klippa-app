@@ -21,8 +21,8 @@ const expression = [
   },
   {
     id: '4',
-    question: '2+3*sqrt(4)',
-    answer: '8',
+    question: '(3/4)*(2/3)*10',
+    answer: '5',
   },
 ]
 

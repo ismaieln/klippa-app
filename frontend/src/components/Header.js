@@ -39,7 +39,7 @@ const Header = () => {
 
               <LinkContainer to='/contact'>
                 <Nav.Link>
-                  <i className='fas fa-shopping-cart'></i> Contact Us
+                  <i className='fas fa-user'></i> Login
                 </Nav.Link>
               </LinkContainer>
               <LinkContainer to='/about'>
