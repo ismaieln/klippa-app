@@ -6,14 +6,10 @@ const Exercises = ({ _id, expression }) => {
   const [valueTyped] = useAnswer(_id)
 
   return (
-    <Form.Group
-      as={Row}
-      className='my-3 justify-content-between mx-auto px-2'
-      key={_id}
-    >
-      <Form.Label column md={4} className=' shadow bg-body rounded my-2'>
+    <Row className='my-3 justify-content-between mx-auto px-2' key={_id}>
+      <Col md={4} className=' shadow bg-body rounded my-2'>
         {expression}
-      </Form.Label>
+      </Col>
       <Col>
         <Form.Control
           onChange={valueTyped}
@@ -21,7 +17,7 @@ const Exercises = ({ _id, expression }) => {
           className=' shadow bg-body rounded my-2 px-2'
         />
       </Col>
-    </Form.Group>
+    </Row>
   )
 }
 

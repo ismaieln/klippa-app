@@ -1,14 +1,16 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Container, Image } from 'react-bootstrap'
+import Images from '../images/Images'
 
 const Wrong = () => {
   return (
-    <div>
+    <Container>
       <Button bg='light' variant='light' className='my-3'>
-        <a href='/'> Go Back</a>
+        <a href='/'> Try Again</a>
       </Button>
       <h1>This is Wrong</h1>
-    </div>
+      <Image src={Images[0].src} alt='wrong' fluid />
+    </Container>
   )
 }
 

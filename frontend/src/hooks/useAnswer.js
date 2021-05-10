@@ -8,9 +8,11 @@ const useAnswer = (_id) => {
     setAnswThree,
     setAnswFour,
     setAnswFive,
+    setSubmitDisable,
   } = useContext(GlobalContext)
 
   let valueTyped = (e) => {
+    setSubmitDisable(false)
     switch (_id) {
       case '0':
         setAnswOne(e.target.value)

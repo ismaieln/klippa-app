@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Button, Container, Form } from 'react-bootstrap'
+import { Button, Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { GlobalContext } from '../hooks/GlobalContext'
 import useFetch from '../hooks/useFetch'
@@ -15,10 +15,13 @@ const Home = () => {
     answFive,
     flag,
     setFlag,
+    submitDisable,
+    setSubmitDisable,
   } = useContext(GlobalContext)
 
   const submitHandler = (e) => {
     e.preventDefault()
+    setSubmitDisable(!submitDisable)
     if (
       answOne === expressions[0].answer &&
       answTwo === expressions[1].answer &&
@@ -33,47 +36,65 @@ const Home = () => {
   }
 
   return (
-    <div>
-      <Form onSubmit={submitHandler}>
-        {expressions.length !== 0 && (
-          <Container>
-            <Exercises
-              _id={expressions[0].id}
-              expression={expressions[0].question}
-            />
-            <Exercises
-              _id={expressions[1].id}
-              expression={expressions[1].question}
-            />
-            <Exercises
-              _id={expressions[2].id}
-              expression={expressions[2].question}
-            />
-            <Exercises
-              _id={expressions[3].id}
-              expression={expressions[3].question}
-            />
-            <Exercises
-              _id={expressions[4].id}
-              expression={expressions[4].question}
-            />
-          </Container>
-        )}
-        {!flag ? (
-          <Link to='/correct'>
-            <Button variant='info' type='submit'>
-              Submit
-            </Button>
-          </Link>
-        ) : (
-          <Link to='/wrong'>
-            <Button variant='info' type='submit'>
-              Submit
-            </Button>
-          </Link>
-        )}
-      </Form>
-    </div>
+    <Container>
+      {expressions.length !== 0 && (
+        <Container>
+          <Exercises
+            _id={expressions[0].id}
+            expression={expressions[0].question}
+          />
+          <Exercises
+            _id={expressions[1].id}
+            expression={expressions[1].question}
+          />
+          <Exercises
+            _id={expressions[2].id}
+            expression={expressions[2].question}
+          />
+          <Exercises
+            _id={expressions[3].id}
+            expression={expressions[3].question}
+          />
+          <Exercises
+            _id={expressions[4].id}
+            expression={expressions[4].question}
+          />
+        </Container>
+      )}
+      <Row className='px-3'>
+        <Col>
+          <Button
+            variant='info'
+            type='submit'
+            size='lg'
+            onClick={submitHandler}
+            className='shadow mb-5 bg-body rounded'
+          >
+            Confirm
+          </Button>
+        </Col>
+        <Col>
+          <Button
+            variant='info'
+            type='submit'
+            size='lg'
+            disabled={!submitDisable}
+            onClick={submitHandler}
+            className='shadow mb-5 bg-body rounded text-decoration-none'
+          >
+            {flag ? (
+              <Link to='/correct' className='text-decoration-none'>
+                Submit
+              </Link>
+            ) : (
+              <Link to='/wrong' className='text-decoration-none'>
+                Submit
+              </Link>
+            )}
+          </Button>
+        </Col>
+      </Row>
+    </Container>
   )
 }
 
