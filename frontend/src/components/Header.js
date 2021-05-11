@@ -6,7 +6,7 @@ import { GlobalContext } from '../hooks/GlobalContext'
 const Header = () => {
   const { setUser, user } = useContext(GlobalContext)
 
-  const logoutHandler = () => setUser('')
+  const logoutHandler = () => setUser()
 
   return (
     <header>

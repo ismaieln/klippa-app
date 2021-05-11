@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import { Badge, Button, Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { GlobalContext } from '../hooks/GlobalContext'
 import useFetch from '../hooks/useFetch'
@@ -34,17 +34,10 @@ const Home = () => {
       answFive === expressions[4].answer
     ) {
       setFlag(true)
-      console.log('correct')
     } else {
       setFlag(false)
-      console.log('wrong')
     }
     setLoading(false)
-    console.log(`${answOne} ${expressions[0].answer} `)
-    console.log(`${answTwo}  ${expressions[1].answer} `)
-    console.log(`${answThree}  ${expressions[2].answer}`)
-    console.log(`${answFour}  ${expressions[3].answer}`)
-    console.log(`${answFive}  ${expressions[4].answer}`)
   }
 
   return (
@@ -52,6 +45,7 @@ const Home = () => {
       {loading && <Loader />}
       {expressions.length !== 0 && (
         <Container>
+          <h1 className='px-2 py-4'>Enter the answers in the empty places</h1>
           <Exercises
             _id={expressions[0].id}
             expression={expressions[0].question}
