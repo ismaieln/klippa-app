@@ -10,9 +10,8 @@ const LogIn = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const { setUser, error, setError, loading, setLoading } = useContext(
-    GlobalContext
-  )
+  const { setUser, error, setError, loading, setLoading } =
+    useContext(GlobalContext)
 
   const submitHandler = (e) => {
     e.preventDefault()

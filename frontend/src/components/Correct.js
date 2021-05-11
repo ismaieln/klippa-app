@@ -1,15 +1,17 @@
 import React from 'react'
-import { Button, Container, Image } from 'react-bootstrap'
-import Images from '../images/Images'
+import { Container, Image } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const Correct = () => {
   return (
     <Container>
-      <Button bg='light' variant='light' className='my-3'>
-        <a href='/'> Go Back</a>
-      </Button>
+      <div className='py-3'>
+        <Link to='/' className='text-decoration-none'>
+          Go Back
+        </Link>
+      </div>
       <h1>That's correct</h1>
-      <Image src={Images[1].src} alt='correct' fluid rounded />
+      <Image src='/images/checkmark.jpg' alt='correct' fluid rounded />
     </Container>
   )
 }

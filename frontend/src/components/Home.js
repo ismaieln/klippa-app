@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
-import { Badge, Button, Col, Container, Row } from 'react-bootstrap'
+import { Button, Col, Container, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { GlobalContext } from '../hooks/GlobalContext'
 import useFetch from '../hooks/useFetch'
 import Exercises from './Exercises'
 import Loader from './Loader'
+import StopPlay from './StopPlay'
 
 const Home = () => {
   const [expressions] = useFetch()
@@ -20,6 +21,8 @@ const Home = () => {
     setFlag,
     submitDisable,
     setSubmitDisable,
+    playCount,
+    setPlayCount,
   } = useContext(GlobalContext)
 
   const submitHandler = (e) => {
@@ -34,14 +37,18 @@ const Home = () => {
       answFive === expressions[4].answer
     ) {
       setFlag(true)
+      setPlayCount(0)
     } else {
       setFlag(false)
+      setPlayCount(playCount + 1)
     }
+    console.log(playCount)
     setLoading(false)
   }
 
   return (
     <Container>
+      {playCount > 5 && <StopPlay />}
       {loading && <Loader />}
       {expressions.length !== 0 && (
         <Container>

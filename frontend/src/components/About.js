@@ -1,12 +1,15 @@
 import React from 'react'
-import { Button, Container } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const About = () => {
   return (
     <div>
-      <Button bg='light' variant='light' className='my-3'>
-        <a href='/'> Go Back</a>
-      </Button>
+      <div className='py-3'>
+        <Link to='/' className='text-decoration-none'>
+          Go Back
+        </Link>
+      </div>
       <h1>This is About</h1>
       <Container>
         <p>

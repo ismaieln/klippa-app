@@ -13,6 +13,7 @@ const StoreProvider = ({ children }) => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [submitDisable, setSubmitDisable] = useState(false)
+  const [playCount, setPlayCount] = useState(0)
 
   const store = {
     answOne,
@@ -35,6 +36,8 @@ const StoreProvider = ({ children }) => {
     setError,
     submitDisable,
     setSubmitDisable,
+    playCount,
+    setPlayCount,
   }
   return (
     <GlobalContext.Provider value={store}>{children}</GlobalContext.Provider>
