@@ -1,19 +1,50 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import { GlobalContext } from '../hooks/GlobalContext'
 import FormContainer from './FormContainer'
+import axios from 'axios'
+import Message from './Message'
+import Loader from './Loader'
 
 const LogIn = () => {
-  const { email, setEmail, password, setPassword } = useContext(GlobalContext)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const { setUser, error, setError, loading, setLoading } = useContext(
+    GlobalContext
+  )
 
   const submitHandler = (e) => {
     e.preventDefault()
-    console.log(`${email} for ${password}`)
+
+    const fetchUser = async () => {
+      try {
+        setLoading(true)
+        const { data } = await axios.post(
+          '/login',
+          { email, password },
+          { headers: { 'Content-Type': 'application/json' } }
+        )
+        setLoading(false)
+        setUser(data)
+        setError('')
+      } catch (error) {
+        setError(
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message
+        )
+        setLoading(false)
+      }
+    }
+    fetchUser()
   }
 
   return (
     <FormContainer>
       <h1>Sign In</h1>
+      {error && <Message variant='danger'>{error}</Message>}
+      {loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId='email'>
           <Form.Label>Email Address</Form.Label>
@@ -35,7 +66,7 @@ const LogIn = () => {
           ></Form.Control>
         </Form.Group>
 
-        <Button type='submit' variant='primary' className='mt-2 btn btn-block'>
+        <Button type='submit' variant='info' className='mt-2 btn btn-block'>
           Sign In
         </Button>
       </Form>

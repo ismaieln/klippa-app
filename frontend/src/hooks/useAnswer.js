@@ -11,7 +11,7 @@ const useAnswer = (_id) => {
     setSubmitDisable,
   } = useContext(GlobalContext)
 
-  let valueTyped = (e) => {
+  const valueTyped = (e) => {
     setSubmitDisable(false)
     switch (_id) {
       case '0':

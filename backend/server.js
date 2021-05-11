@@ -1,21 +1,22 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import expression from './data/expression.js'
+import connectDB from './config/db.js'
+import expressionsRoutes from './routes/expressionsRoutes.js'
+import userRoutes from './routes/userRoutes.js'
+
+dotenv.config()
+connectDB()
 
 const app = express()
+
+app.use(express.json())
 
 app.get('/', (req, res) => {
   res.send('hello I am Ismaiel')
 })
 
-app.get('/api/guess', (req, res) => {
-  res.json(expression)
-})
-
-app.get('/api/guess/:id', (req, res) => {
-  const data = expression.find((p) => p.id === req.params.id)
-  res.json(data)
-})
+app.use('/api/guess/', expressionsRoutes)
+app.use('/login', userRoutes)
 
 const PORT = process.env.PORT || 5000
 

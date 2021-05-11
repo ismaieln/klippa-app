@@ -1,10 +1,13 @@
-import React from 'react'
-import { Container, Nav, Navbar } from 'react-bootstrap'
-import { useLocation } from 'react-router'
+import React, { useContext } from 'react'
+import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
+import { GlobalContext } from '../hooks/GlobalContext'
 
 const Header = () => {
-  let location = useLocation()
+  const { setUser, user } = useContext(GlobalContext)
+
+  const logoutHandler = () => setUser('')
+
   return (
     <header>
       <Navbar
@@ -30,18 +33,25 @@ const Header = () => {
             id='basic-navbar-nav'
             className='justify-content-end'
           >
-            <Nav className='ml-auto' activeKey={location.pathname}>
-              <LinkContainer to='/answer'>
-                <Nav.Link>
-                  <i className='fas fa-calculator'></i> Answers
-                </Nav.Link>
-              </LinkContainer>
+            <Nav className='ml-auto'>
+              {user ? (
+                <NavDropdown title='Account' id='username'>
+                  <NavDropdown.Item disabled>{user.name}</NavDropdown.Item>
+                  <LinkContainer to='/profile'>
+                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                  </LinkContainer>
+                  <NavDropdown.Item onClick={logoutHandler}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
+              ) : (
+                <LinkContainer to='/login'>
+                  <Nav.Link>
+                    <i className='fas fa-user'></i> Login
+                  </Nav.Link>
+                </LinkContainer>
+              )}
 
-              <LinkContainer to='/login'>
-                <Nav.Link>
-                  <i className='fas fa-user'></i> Login
-                </Nav.Link>
-              </LinkContainer>
               <LinkContainer to='/about'>
                 <Nav.Link>About</Nav.Link>
               </LinkContainer>

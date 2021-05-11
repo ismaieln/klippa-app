@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { GlobalContext } from '../hooks/GlobalContext'
 import useFetch from '../hooks/useFetch'
 import Exercises from './Exercises'
+import Loader from './Loader'
 
 const Home = () => {
   const [expressions] = useFetch()
@@ -14,6 +15,8 @@ const Home = () => {
     answFour,
     answFive,
     flag,
+    loading,
+    setLoading,
     setFlag,
     submitDisable,
     setSubmitDisable,
@@ -21,6 +24,7 @@ const Home = () => {
 
   const submitHandler = (e) => {
     e.preventDefault()
+    setLoading(true)
     setSubmitDisable(!submitDisable)
     if (
       answOne === expressions[0].answer &&
@@ -30,13 +34,22 @@ const Home = () => {
       answFive === expressions[4].answer
     ) {
       setFlag(true)
+      console.log('correct')
     } else {
       setFlag(false)
+      console.log('wrong')
     }
+    setLoading(false)
+    console.log(`${answOne} ${expressions[0].answer} `)
+    console.log(`${answTwo}  ${expressions[1].answer} `)
+    console.log(`${answThree}  ${expressions[2].answer}`)
+    console.log(`${answFour}  ${expressions[3].answer}`)
+    console.log(`${answFive}  ${expressions[4].answer}`)
   }
 
   return (
     <Container>
+      {loading && <Loader />}
       {expressions.length !== 0 && (
         <Container>
           <Exercises
@@ -80,7 +93,7 @@ const Home = () => {
             size='lg'
             disabled={!submitDisable}
             onClick={submitHandler}
-            className='shadow mb-5 bg-body rounded text-decoration-none'
+            className='shadow mb-5 bg-body rounded'
           >
             {flag ? (
               <Link to='/correct' className='text-decoration-none'>
