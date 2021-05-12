@@ -15,8 +15,8 @@ app.get('/', (req, res) => {
   res.send('hello I am Ismaiel')
 })
 
-app.use('/api/guess/', expressionsRoutes)
-app.use('/login', userRoutes)
+app.use('/api/expression/', expressionsRoutes)
+app.use('/api/user', userRoutes)
 
 const PORT = process.env.PORT || 5000
 

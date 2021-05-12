@@ -27,7 +27,7 @@ const Register = () => {
         try {
           setLoading(true)
           const { data } = await axios.post(
-            '/',
+            '/api/user',
             { name, email, password },
             { headers: { 'Content-Type': 'application/json' } }
           )

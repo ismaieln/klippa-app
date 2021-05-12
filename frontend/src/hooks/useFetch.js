@@ -6,7 +6,7 @@ const useFetch = (_id) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get('/api/guess')
+      const { data } = await axios.get('/api/expression')
       setExpressions(data)
     }
     fetchData()
