@@ -12,10 +12,6 @@ const app = express()
 
 app.use(express.json())
 
-app.get('/', (req, res) => {
-  res.send('hello I am Ismaiel')
-})
-
 app.use('/api/expression/', expressionsRoutes)
 app.use('/api/user', userRoutes)
 

@@ -12,7 +12,7 @@ router.get(
     const expressions = await Expression.find({})
 
     const expression = choose(expressions)
-    res.json(expression)
+    res.json(expressions)
   })
 )
 
