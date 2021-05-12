@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Col, Container, Row } from 'react-bootstrap'
 
 import { Link } from 'react-router-dom'
 import { GlobalContext } from '../hooks/GlobalContext'
@@ -13,26 +14,41 @@ const Profile = () => {
           Go Back
         </Link>
       </div>
-      <h1>{user.name}</h1>
-      <p>
-        <strong>Name: </strong>
-        {user.name}
-      </p>
-      <p>
-        <strong>Email: </strong>
-        {user.email}
-      </p>
-      <p>
-        <strong>Password: </strong>
-        {user.password} *....*
-      </p>
-      <p>
-        <strong>Status: </strong>
-        {user.status}
-      </p>
-      <p>
-        <strong>Play History: </strong>
-      </p>
+      {user && (
+        <Container>
+          <h1>{user.name}'s Information</h1>
+          <Row>
+            <Col>
+              <strong>Name: </strong>
+            </Col>
+            <Col>{user.name}</Col>
+          </Row>
+          <Row>
+            <Col>
+              <strong>Email: </strong>
+            </Col>
+            <Col>{user.email}</Col>
+          </Row>
+          <Row>
+            <Col>
+              <strong>Password: </strong>
+            </Col>
+            <Col>{user.password} *....*</Col>
+          </Row>
+          <Row>
+            <Col>
+              <strong>Status: </strong>
+            </Col>
+            <Col>{user.status}</Col>
+          </Row>
+          <Row>
+            <Col>
+              <strong>Play History: </strong>
+            </Col>
+            <Col></Col>
+          </Row>
+        </Container>
+      )}
     </FormContainer>
   )
 }

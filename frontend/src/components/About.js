@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom'
 
 const About = () => {
   return (
-    <div>
+    <Container>
       <div className='py-3'>
         <Link to='/' className='text-decoration-none'>
           Go Back
         </Link>
       </div>
       <h1>This is About</h1>
-      <Container>
+      <Container className='p-3'>
         <p>
           Create a basic calculator React app. The app needs to have a header
           for a logo and a menu. On the first screen of this app, the app
@@ -37,7 +37,7 @@ const About = () => {
           webpage can be used by multiple people.
         </p>
       </Container>
-    </div>
+    </Container>
   )
 }
 

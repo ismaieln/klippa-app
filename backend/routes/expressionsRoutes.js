@@ -2,6 +2,7 @@ import express from 'express'
 import asyncHandler from 'express-async-handler'
 
 import Expression from '../models/expressionModel.js'
+import choose from '../utils/choose.js'
 
 const router = express.Router()
 
@@ -10,7 +11,8 @@ router.get(
   asyncHandler(async (req, res) => {
     const expressions = await Expression.find({})
 
-    res.json(expressions)
+    const expression = choose(expressions)
+    res.json(expression)
   })
 )
 

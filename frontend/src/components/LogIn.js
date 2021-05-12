@@ -7,7 +7,7 @@ import Message from './Message'
 import Loader from './Loader'
 import { Link } from 'react-router-dom'
 
-const LogIn = () => {
+const LogIn = ({ history }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -28,6 +28,7 @@ const LogIn = () => {
         setLoading(false)
         setUser(data)
         setError('')
+        history.push('/')
       } catch (error) {
         setError(
           error.response && error.response.data.message

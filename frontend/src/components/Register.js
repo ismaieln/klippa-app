@@ -7,7 +7,7 @@ import FormContainer from './FormContainer'
 import Loader from './Loader'
 import Message from './Message'
 
-const Register = () => {
+const Register = ({ history }) => {
   const { error, setError, loading, setLoading, setUser } =
     useContext(GlobalContext)
 
@@ -34,6 +34,7 @@ const Register = () => {
           setLoading(false)
           setUser(data)
           setError('')
+          history.push('/')
         } catch (error) {
           setError(
             error.response && error.response.data.message
