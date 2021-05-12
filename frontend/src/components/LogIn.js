@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react'
-import { Button, Form } from 'react-bootstrap'
+import { Button, Col, Form, Row } from 'react-bootstrap'
 import { GlobalContext } from '../hooks/GlobalContext'
 import FormContainer from './FormContainer'
 import axios from 'axios'
 import Message from './Message'
 import Loader from './Loader'
+import { Link } from 'react-router-dom'
 
 const LogIn = () => {
   const [email, setEmail] = useState('')
@@ -68,6 +69,12 @@ const LogIn = () => {
         <Button type='submit' variant='info' className='mt-2 btn btn-block'>
           Sign In
         </Button>
+
+        <Row className='py-3'>
+          <Col>
+            New Customer? <Link to='/register'>Register</Link>
+          </Col>
+        </Row>
       </Form>
     </FormContainer>
   )

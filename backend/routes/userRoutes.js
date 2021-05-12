@@ -41,8 +41,7 @@ router.post(
 )
 
 // Sign up a new user
-router.post(
-  '/',
+router.route('/').post(
   asyncHandler(async (req, res) => {
     const { name, email, password } = req.body
 

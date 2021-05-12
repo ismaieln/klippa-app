@@ -9,6 +9,7 @@ import LogIn from './components/LogIn'
 import About from './components/About'
 import Wrong from './components/Wrong'
 import Profile from './components/Profile'
+import Register from './components/Register'
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path='/wrong' component={Wrong} />
           <Route path='/about' component={About} />
           <Route path='/login' component={LogIn} />
+          <Route path='/register' component={Register} />
           <Route path='/profile' component={Profile} />
         </Container>
       </main>

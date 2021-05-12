@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
-import { Button } from 'react-bootstrap'
+
+import { Link } from 'react-router-dom'
 import { GlobalContext } from '../hooks/GlobalContext'
 import FormContainer from './FormContainer'
 
@@ -7,9 +8,11 @@ const Profile = () => {
   const { user } = useContext(GlobalContext)
   return (
     <FormContainer>
-      <Button bg='light' variant='light' className='my-3'>
-        <a href='/'> Go Back</a>
-      </Button>
+      <div className='py-3'>
+        <Link to='/' className='text-decoration-none'>
+          Go Back
+        </Link>
+      </div>
       <h1>{user.name}</h1>
       <p>
         <strong>Name: </strong>

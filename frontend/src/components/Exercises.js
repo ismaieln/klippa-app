@@ -8,12 +8,13 @@ const Exercises = ({ _id, expression }) => {
   return (
     <Row className='my-3 justify-content-between mx-auto px-2' key={_id}>
       <Col md={4} className=' shadow bg-body rounded my-2'>
-        {expression}
+        <strong>{expression}</strong>
       </Col>
       <Col>
         <Form.Control
           onChange={valueTyped}
           plaintext
+          placeholder='.....'
           className=' shadow bg-body rounded my-2 px-2'
         />
       </Col>

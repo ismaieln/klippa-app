@@ -42,7 +42,7 @@ const Home = () => {
       setFlag(false)
       setPlayCount(playCount + 1)
     }
-    console.log(playCount)
+
     setLoading(false)
   }
 
