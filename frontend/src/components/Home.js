@@ -1,14 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button, Col, Container, Row } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import { GlobalContext } from '../hooks/GlobalContext'
-import useFetch from '../hooks/useFetch'
+import fetchQuestions from '../hooks/fetchQuestions'
 import Exercises from './Exercises'
 import Loader from './Loader'
 import StopPlay from './StopPlay'
 
-const Home = () => {
-  const [expressions] = useFetch()
+const Home = ({ history }) => {
+  const [flag, setFlag] = useState(false)
+  const [submitDisable, setSubmitDisable] = useState(false)
+  const expressions = localStorage.getItem('qInfo')
+    ? JSON.parse(localStorage.getItem('qInfo'))
+    : ['', '', '', '', '']
   const {
     answOne,
     answTwo,
@@ -17,10 +20,6 @@ const Home = () => {
     answFive,
     loading,
     setLoading,
-    flag,
-    setFlag,
-    submitDisable,
-    setSubmitDisable,
     playCount,
     setPlayCount,
   } = useContext(GlobalContext)
@@ -28,7 +27,7 @@ const Home = () => {
   const submitHandler = (e) => {
     e.preventDefault()
     setLoading(true)
-    setSubmitDisable(!submitDisable)
+    setSubmitDisable(true)
     if (
       answOne === expressions[0].answer &&
       answTwo === expressions[1].answer &&
@@ -37,74 +36,74 @@ const Home = () => {
       answFive === expressions[4].answer
     ) {
       setFlag(true)
-      setPlayCount(0)
     } else {
       setFlag(false)
-      setPlayCount(playCount + 1)
     }
-
     setLoading(false)
   }
 
+  const confirmHandler = (e) => {
+    e.preventDefault()
+    setSubmitDisable(false)
+    if (flag) {
+      setPlayCount(0)
+      history.push('/correct')
+    } else {
+      setPlayCount(playCount + 1)
+      history.push('/wrong')
+    }
+  }
+
+  useEffect(() => {}, [])
+
   return (
     <Container>
+      <Row>
+        <Button variant='info' className='sbga' onClick={fetchQuestions}>
+          Get Questions
+        </Button>
+      </Row>
       {playCount > 5 && <StopPlay />}
       {loading && <Loader />}
       {expressions.length !== 0 && (
         <Container>
-          <h1 className='px-2 py-4'>Enter the answers in the empty places</h1>
-          <Exercises
-            _id={expressions[0].id}
-            expression={expressions[0].question}
-          />
-          <Exercises
-            _id={expressions[1].id}
-            expression={expressions[1].question}
-          />
-          <Exercises
-            _id={expressions[2].id}
-            expression={expressions[2].question}
-          />
-          <Exercises
-            _id={expressions[3].id}
-            expression={expressions[3].question}
-          />
-          <Exercises
-            _id={expressions[4].id}
-            expression={expressions[4].question}
-          />
+          <Row>
+            <h3 className='px-2 py-4'>Enter the answers in the empty places</h3>
+          </Row>
+          <Row className='my-3 justify-content-between mx-auto text-info'>
+            <Col as='h4' md={4} xs={5} className='text-center'>
+              Questions
+            </Col>
+            <Col lg={2} md={2} xs={1}></Col>
+            <Col as='h4' md={6} xs={5} className='text-center'>
+              Answers
+            </Col>
+          </Row>
+          <Exercises _id='0' expression={expressions[0].question} />
+          <Exercises _id='1' expression={expressions[1].question} />
+          <Exercises _id='2' expression={expressions[2].question} />
+          <Exercises _id='3' expression={expressions[3].question} />
+          <Exercises _id='4' expression={expressions[4].question} />
         </Container>
       )}
-      <Row className='px-3'>
-        <Col>
-          <Button
-            variant='info'
-            type='submit'
-            size='lg'
-            onClick={submitHandler}
-            className='shadow mb-5 bg-body rounded'
-          >
-            Confirm
-          </Button>
+      <Row className='px-3 justify-content-center'>
+        <Col
+          as='button'
+          type='submit'
+          md={4}
+          onClick={submitHandler}
+          className='sbg mb-5'
+        >
+          <strong className='text-info'>Confirm</strong>
         </Col>
-        <Col>
+        <Col md={4} className='sbg'>
           <Button
-            variant='info'
-            type='submit'
-            size='lg'
             disabled={!submitDisable}
-            onClick={submitHandler}
-            className='shadow mb-5 bg-body rounded'
+            type='submit'
+            onClick={confirmHandler}
+            className='sbg mb-5 bg-light'
           >
-            {flag ? (
-              <Link to='/correct' className='text-decoration-none'>
-                Submit
-              </Link>
-            ) : (
-              <Link to='/wrong' className='text-decoration-none'>
-                Submit
-              </Link>
-            )}
+            <strong className='text-info'>Submit</strong>
           </Button>
         </Col>
       </Row>

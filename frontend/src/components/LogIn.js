@@ -25,6 +25,7 @@ const LogIn = ({ history }) => {
           { email, password },
           { headers: { 'Content-Type': 'application/json' } }
         )
+        localStorage.setItem('userInfo', JSON.stringify(data))
         setLoading(false)
         setUser(data)
         setError('')

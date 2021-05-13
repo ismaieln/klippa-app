@@ -7,15 +7,18 @@ const Exercises = ({ _id, expression }) => {
 
   return (
     <Row className='my-3 justify-content-between mx-auto px-2' key={_id}>
-      <Col md={4} className=' shadow bg-body rounded my-2'>
+      <Col md={4} xs={5} className='rounded py-2 my-auto sbq'>
         <strong>{expression}</strong>
       </Col>
-      <Col>
+      <Col lg={2} md={2} xs={1} className='text-center py-2 my-auto'>
+        <h2>=</h2>
+      </Col>
+      <Col md={6} xs={5} className='sba px-2 pt-3'>
         <Form.Control
-          onChange={valueTyped}
           plaintext
+          onChange={valueTyped}
           placeholder='.....'
-          className=' shadow bg-body rounded my-2 px-2'
+          className=''
         />
       </Col>
     </Row>

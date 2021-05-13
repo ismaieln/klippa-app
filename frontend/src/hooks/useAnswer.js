@@ -2,17 +2,10 @@ import { useContext } from 'react'
 import { GlobalContext } from './GlobalContext'
 
 const useAnswer = (_id) => {
-  const {
-    setAnswOne,
-    setAnswTwo,
-    setAnswThree,
-    setAnswFour,
-    setAnswFive,
-    setSubmitDisable,
-  } = useContext(GlobalContext)
+  const { setAnswOne, setAnswTwo, setAnswThree, setAnswFour, setAnswFive } =
+    useContext(GlobalContext)
 
   const valueTyped = (e) => {
-    setSubmitDisable(false)
     switch (_id) {
       case '0':
         setAnswOne(e.target.value)

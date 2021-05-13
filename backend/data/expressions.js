@@ -1,28 +1,31 @@
 const expressions = [
   {
-    id: '0',
-    question: '5x6',
-    answer: '30',
+    question: '[log(10²)]-[ln(1)]',
+    answer: '2',
   },
   {
-    id: '1',
     question: '10-2',
     answer: '8',
   },
   {
-    id: '2',
-    question: 'Sin (0)',
+    question: '(sin 63°)² + (cos 63°)²',
     answer: '1',
   },
   {
-    id: '3',
-    question: '2*(7-3)',
-    answer: '12',
+    question: '2.5×(7-3)',
+    answer: '10',
   },
   {
-    id: '4',
-    question: '(3/4)*(2/3)*10',
+    question: '(¾)×(⅔)×10',
     answer: '5',
+  },
+  {
+    question: '(cos 30°)² × 4',
+    answer: '3',
+  },
+  {
+    question: '	(cos 45°) × √2',
+    answer: '1',
   },
 ]
 
