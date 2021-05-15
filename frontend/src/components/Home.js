@@ -106,6 +106,7 @@ const Home = ({ history }) => {
         <Col
           as='button'
           type='submit'
+          disabled={!user}
           md={4}
           onClick={submitHandler}
           className='sbg mb-5'

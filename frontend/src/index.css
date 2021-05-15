@@ -51,3 +51,23 @@ main {
     0px 4px 4px #666, 0px 5px 5px #555, 0px 6px 6px #444, 0px 7px 7px #333,
     0px 8px 7px #001135;
 }
+
+.blink {
+  animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink:focus {
+  animation: none;
+}
