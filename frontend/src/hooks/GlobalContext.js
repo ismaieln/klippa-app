@@ -8,10 +8,12 @@ const StoreProvider = ({ children }) => {
   const [answThree, setAnswThree] = useState('')
   const [answFour, setAnswFour] = useState('')
   const [answFive, setAnswFive] = useState('')
-  const [user, setUser] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [playCount, setPlayCount] = useState(0)
+  const [user, setUser] = useState('')
+  const [expressions, setExpressions] = useState([])
+  const [flag, setFlag] = useState(false)
 
   const store = {
     answOne,
@@ -24,14 +26,18 @@ const StoreProvider = ({ children }) => {
     setAnswFour,
     answFive,
     setAnswFive,
-    user,
-    setUser,
     loading,
     setLoading,
     error,
     setError,
     playCount,
     setPlayCount,
+    user,
+    setUser,
+    expressions,
+    setExpressions,
+    flag,
+    setFlag,
   }
   return (
     <GlobalContext.Provider value={store}>{children}</GlobalContext.Provider>

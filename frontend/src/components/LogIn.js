@@ -26,8 +26,8 @@ const LogIn = ({ history }) => {
           { headers: { 'Content-Type': 'application/json' } }
         )
         localStorage.setItem('userInfo', JSON.stringify(data))
-        setLoading(false)
         setUser(data)
+        setLoading(false)
         setError('')
         history.push('/')
       } catch (error) {

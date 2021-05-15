@@ -35,12 +35,7 @@ const Profile = () => {
             </Col>
             <Col>{user.password} *....*</Col>
           </Row>
-          <Row>
-            <Col>
-              <strong>Status: </strong>
-            </Col>
-            <Col>{user.status}</Col>
-          </Row>
+
           <Row>
             <Col>
               <strong>Play History: </strong>

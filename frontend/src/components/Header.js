@@ -4,9 +4,12 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { GlobalContext } from '../hooks/GlobalContext'
 
 const Header = () => {
-  const { setUser, user } = useContext(GlobalContext)
+  const { user, setUser } = useContext(GlobalContext)
 
-  const logoutHandler = () => setUser()
+  const logoutHandler = () => {
+    localStorage.removeItem('userInfo')
+    setUser('')
+  }
 
   return (
     <header>
@@ -35,8 +38,7 @@ const Header = () => {
           >
             <Nav className='ml-auto'>
               {user ? (
-                <NavDropdown title='Account' id='username'>
-                  <NavDropdown.Item disabled>{user.name}</NavDropdown.Item>
+                <NavDropdown title={user.name} id='username'>
                   <LinkContainer to='/profile'>
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>

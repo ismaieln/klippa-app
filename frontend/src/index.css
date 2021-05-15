@@ -32,15 +32,18 @@ main {
 .sba {
   border: none;
   border-radius: 5px;
-  padding: 5px 5px;
   color: #333;
   box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 0, 0, 0.1);
   background-color: white;
+  max-height: 5vh;
+  padding-top: 5px;
 }
 
 .sbga {
   background-color: azure;
   border: rgb(127, 219, 255);
+  border-radius: 15px;
+  margin-top: 1vh;
   color: rgb(25, 162, 184);
   font-size: xx-large;
   font-weight: bolder;

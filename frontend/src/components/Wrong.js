@@ -7,7 +7,7 @@ const Wrong = () => {
     <Container>
       <div className='py-3'>
         <Link to='/' className='text-decoration-none'>
-          Go Back
+          Try Again
         </Link>
       </div>
       <h1>This is Wrong</h1>

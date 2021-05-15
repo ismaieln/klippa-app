@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import { GlobalContext } from '../hooks/GlobalContext'
 import fetchQuestions from '../hooks/fetchQuestions'
@@ -7,11 +7,8 @@ import Loader from './Loader'
 import StopPlay from './StopPlay'
 
 const Home = ({ history }) => {
-  const [flag, setFlag] = useState(false)
   const [submitDisable, setSubmitDisable] = useState(false)
-  const expressions = localStorage.getItem('qInfo')
-    ? JSON.parse(localStorage.getItem('qInfo'))
-    : ['', '', '', '', '']
+
   const {
     answOne,
     answTwo,
@@ -22,7 +19,17 @@ const Home = ({ history }) => {
     setLoading,
     playCount,
     setPlayCount,
+    expressions,
+    setExpressions,
+    user,
+    flag,
+    setFlag,
   } = useContext(GlobalContext)
+
+  const getQuestions = async () => {
+    const q = await fetchQuestions()
+    setExpressions(q)
+  }
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -54,18 +61,21 @@ const Home = ({ history }) => {
     }
   }
 
-  useEffect(() => {}, [])
-
   return (
     <Container>
       <Row>
-        <Button variant='info' className='sbga' onClick={fetchQuestions}>
+        <Button
+          variant='info'
+          className='sbga'
+          disabled={!user}
+          onClick={getQuestions}
+        >
           Get Questions
         </Button>
       </Row>
       {playCount > 5 && <StopPlay />}
       {loading && <Loader />}
-      {expressions.length !== 0 && (
+      {user && (
         <Container>
           <Row>
             <h3 className='px-2 py-4'>Enter the answers in the empty places</h3>
@@ -79,11 +89,17 @@ const Home = ({ history }) => {
               Answers
             </Col>
           </Row>
-          <Exercises _id='0' expression={expressions[0].question} />
-          <Exercises _id='1' expression={expressions[1].question} />
-          <Exercises _id='2' expression={expressions[2].question} />
-          <Exercises _id='3' expression={expressions[3].question} />
-          <Exercises _id='4' expression={expressions[4].question} />
+          {expressions.length !== 0 && (
+            <>
+              {expressions.map((item) => (
+                <Exercises
+                  key={item._id}
+                  id={expressions.indexOf(item)}
+                  expression={item.question}
+                />
+              ))}
+            </>
+          )}
         </Container>
       )}
       <Row className='px-3 justify-content-center'>
