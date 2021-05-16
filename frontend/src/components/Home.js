@@ -1,37 +1,63 @@
 import React, { useContext, useState } from 'react'
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import { GlobalContext } from '../hooks/GlobalContext'
-import fetchQuestions from '../hooks/fetchQuestions'
+import { PlayCountContext } from '../hooks/PlayCountContext'
+import fetchQuestions from '../Utils/fetchQuestions'
+import updateRecord from '../Utils/updateRecord'
 import Exercises from './Exercises'
 import Loader from './Loader'
 import StopPlay from './StopPlay'
 
 const Home = ({ history }) => {
   const [submitDisable, setSubmitDisable] = useState(false)
+  const { total, success, fail } = useContext(PlayCountContext)
 
   const {
     answOne,
+    setAnswOne,
     answTwo,
+    setAnswTwo,
     answThree,
+    setAnswThree,
     answFour,
+    setAnswFour,
     answFive,
+    setAnswFive,
     loading,
     setLoading,
     playCount,
-    setPlayCount,
     expressions,
     setExpressions,
     user,
-    flag,
+    setUser,
     setFlag,
   } = useContext(GlobalContext)
 
+  const inState = [answOne, answTwo, answThree, answFour, answFive]
+  localStorage.setItem('answers', JSON.stringify(inState))
+
+  const playInfo = [total, success, fail]
+
+  localStorage.setItem('playHistory', JSON.stringify(playInfo))
+
+  if (!user) {
+    const userInfo = localStorage.getItem('userInfo')
+      ? JSON.parse(localStorage.getItem('userInfo'))
+      : null
+    setUser(userInfo)
+  }
+  updateRecord(user, playInfo)
   const getQuestions = async () => {
     const q = await fetchQuestions()
     setExpressions(q)
+    setAnswOne('')
+    setAnswTwo('')
+    setAnswThree('')
+    setAnswFour('')
+    setAnswFive('')
   }
 
-  const submitHandler = (e) => {
+  const confirmHandler = (e) => {
     e.preventDefault()
     setLoading(true)
     setSubmitDisable(true)
@@ -49,16 +75,11 @@ const Home = ({ history }) => {
     setLoading(false)
   }
 
-  const confirmHandler = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault()
     setSubmitDisable(false)
-    if (flag) {
-      setPlayCount(0)
-      history.push('/correct')
-    } else {
-      setPlayCount(playCount + 1)
-      history.push('/wrong')
-    }
+
+    history.push('/result')
   }
 
   return (
@@ -96,6 +117,7 @@ const Home = ({ history }) => {
                   key={item._id}
                   id={expressions.indexOf(item)}
                   expression={item.question}
+                  inState={inState}
                 />
               ))}
             </>
@@ -108,16 +130,16 @@ const Home = ({ history }) => {
           type='submit'
           disabled={!user}
           md={4}
-          onClick={submitHandler}
+          onClick={confirmHandler}
           className='sbg mb-5'
         >
           <strong className='text-info'>Confirm</strong>
         </Col>
-        <Col md={4} className='sbg'>
+        <Col md={4} className='sbg text-center'>
           <Button
             disabled={!submitDisable}
             type='submit'
-            onClick={confirmHandler}
+            onClick={submitHandler}
             className='sbg mb-5 bg-light'
           >
             <strong className='text-info'>Submit</strong>

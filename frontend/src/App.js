@@ -3,11 +3,9 @@ import { Container } from 'react-bootstrap'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Home from './components/Home'
-import Correct from './components/Correct'
+import Result from './components/Result'
 import LogIn from './components/LogIn'
-
 import About from './components/About'
-import Wrong from './components/Wrong'
 import Profile from './components/Profile'
 import Register from './components/Register'
 
@@ -18,8 +16,7 @@ const App = () => {
       <main>
         <Container className='foto'>
           <Route path='/' component={Home} exact />
-          <Route path='/correct' component={Correct} />
-          <Route path='/wrong' component={Wrong} />
+          <Route path='/result' component={Result} />
           <Route path='/about' component={About} />
           <Route path='/login' component={LogIn} />
           <Route path='/register' component={Register} />

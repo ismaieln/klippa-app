@@ -69,7 +69,25 @@ const register = asyncHandler(async (req, res) => {
   }
 })
 
+const updateRecord = asyncHandler(async (req, res) => {
+  const { playHistory } = req.body
+
+  const user = await User.updateOne({
+    playHistory,
+  })
+
+  if (user) {
+    res.status(201).json({
+      playHistory: user.playHistory,
+    })
+  } else {
+    res.status(400)
+    throw new Error('Invalid user data')
+  }
+})
+
 router.post('/login', login)
+router.put('/user', updateRecord)
 
 router.route('/').post(register)
 

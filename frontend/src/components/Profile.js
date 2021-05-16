@@ -19,6 +19,12 @@ const Profile = () => {
           <h1>{user.name}'s Information</h1>
           <Row>
             <Col>
+              <strong>ID: </strong>
+            </Col>
+            <Col>{user._id}</Col>
+          </Row>
+          <Row>
+            <Col>
               <strong>Name: </strong>
             </Col>
             <Col>{user.name}</Col>
