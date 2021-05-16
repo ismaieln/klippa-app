@@ -39,14 +39,14 @@ const Profile = () => {
             <Col>
               <strong>Password: </strong>
             </Col>
-            <Col>{user.password} *....*</Col>
+            <Col>{user.password} *****</Col>
           </Row>
 
           <Row>
             <Col>
               <strong>Play History: </strong>
             </Col>
-            <Col></Col>
+            <Col>{user.playHistory}</Col>
           </Row>
         </Container>
       )}

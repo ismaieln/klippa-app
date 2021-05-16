@@ -1,12 +1,10 @@
 import React, { useContext } from 'react'
 import { Container, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { GlobalContext } from '../hooks/GlobalContext'
 import { PlayCountContext } from '../hooks/PlayCountContext'
 
 const Result = () => {
-  const { flag } = useContext(GlobalContext)
-  const { total, setTotal, success, setSuccess, fail, setFail } =
+  const { total, setTotal, success, setSuccess, fail, setFail, flag } =
     useContext(PlayCountContext)
 
   let imgSrc, title

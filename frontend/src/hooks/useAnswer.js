@@ -2,25 +2,25 @@ import { useContext } from 'react'
 import { GlobalContext } from './GlobalContext'
 
 const useAnswer = (id) => {
-  const { setAnswOne, setAnswTwo, setAnswThree, setAnswFour, setAnswFive } =
+  const { setFirst, setSecond, setThird, setFourth, setFifth } =
     useContext(GlobalContext)
 
   const valueTyped = (e) => {
     switch (id) {
       case 0:
-        setAnswOne(e.target.value)
+        setFirst(e.target.value)
         break
       case 1:
-        setAnswTwo(e.target.value)
+        setSecond(e.target.value)
         break
       case 2:
-        setAnswThree(e.target.value)
+        setThird(e.target.value)
         break
       case 3:
-        setAnswFour(e.target.value)
+        setFourth(e.target.value)
         break
       case 4:
-        setAnswFive(e.target.value)
+        setFifth(e.target.value)
         break
       default:
         break

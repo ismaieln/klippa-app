@@ -6,6 +6,7 @@ const PlayCountProvider = ({ children }) => {
   const [total, setTotal] = useState(0)
   const [success, setSuccess] = useState(0)
   const [fail, setFail] = useState(0)
+  const [flag, setFlag] = useState(false)
 
   const store = {
     total,
@@ -14,6 +15,8 @@ const PlayCountProvider = ({ children }) => {
     setSuccess,
     fail,
     setFail,
+    flag,
+    setFlag,
   }
   return (
     <PlayCountContext.Provider value={store}>

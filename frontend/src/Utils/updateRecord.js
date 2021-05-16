@@ -10,7 +10,7 @@ const updateRecord = async (user, playInfo) => {
 
   const { data } = await axios.put(
     `/api/user`,
-    (user.playHistory = { playInfo }),
+    (user.playHistory[0] = { playInfo }),
     config
   )
 

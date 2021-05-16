@@ -2,13 +2,27 @@ import React, { useContext } from 'react'
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { GlobalContext } from '../hooks/GlobalContext'
+import { PlayCountContext } from '../hooks/PlayCountContext'
 
 const Header = () => {
-  const { user, setUser } = useContext(GlobalContext)
+  const { user, setUser, setFirst, setSecond, setThird, setFourth, setFifth } =
+    useContext(GlobalContext)
+  const { setTotal, setSuccess, setFail } = useContext(PlayCountContext)
 
   const logoutHandler = () => {
     localStorage.removeItem('userInfo')
+    localStorage.removeItem('qInfo')
+    localStorage.removeItem('playHistory')
+    localStorage.removeItem('answers')
     setUser('')
+    setFirst('')
+    setSecond('')
+    setThird('')
+    setFourth('')
+    setFifth('')
+    setTotal('')
+    setSuccess('')
+    setFail('')
   }
 
   return (

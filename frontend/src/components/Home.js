@@ -3,26 +3,26 @@ import { Button, Col, Container, Row } from 'react-bootstrap'
 import { GlobalContext } from '../hooks/GlobalContext'
 import { PlayCountContext } from '../hooks/PlayCountContext'
 import fetchQuestions from '../Utils/fetchQuestions'
-import updateRecord from '../Utils/updateRecord'
+
 import Exercises from './Exercises'
 import Loader from './Loader'
 import StopPlay from './StopPlay'
 
 const Home = ({ history }) => {
   const [submitDisable, setSubmitDisable] = useState(false)
-  const { total, success, fail } = useContext(PlayCountContext)
+  const { total, success, fail, setFlag } = useContext(PlayCountContext)
 
   const {
-    answOne,
-    setAnswOne,
-    answTwo,
-    setAnswTwo,
-    answThree,
-    setAnswThree,
-    answFour,
-    setAnswFour,
-    answFive,
-    setAnswFive,
+    first,
+    setFirst,
+    second,
+    setSecond,
+    third,
+    setThird,
+    fourth,
+    setFourth,
+    fifth,
+    setFifth,
     loading,
     setLoading,
     playCount,
@@ -30,10 +30,10 @@ const Home = ({ history }) => {
     setExpressions,
     user,
     setUser,
-    setFlag,
   } = useContext(GlobalContext)
 
-  const inState = [answOne, answTwo, answThree, answFour, answFive]
+  const inState = [first, second, third, fourth, fifth]
+
   localStorage.setItem('answers', JSON.stringify(inState))
 
   const playInfo = [total, success, fail]
@@ -46,15 +46,15 @@ const Home = ({ history }) => {
       : null
     setUser(userInfo)
   }
-  updateRecord(user, playInfo)
+
   const getQuestions = async () => {
     const q = await fetchQuestions()
     setExpressions(q)
-    setAnswOne('')
-    setAnswTwo('')
-    setAnswThree('')
-    setAnswFour('')
-    setAnswFive('')
+    setFirst('')
+    setSecond('')
+    setThird('')
+    setFourth('')
+    setFifth('')
   }
 
   const confirmHandler = (e) => {
@@ -62,11 +62,11 @@ const Home = ({ history }) => {
     setLoading(true)
     setSubmitDisable(true)
     if (
-      answOne === expressions[0].answer &&
-      answTwo === expressions[1].answer &&
-      answThree === expressions[2].answer &&
-      answFour === expressions[3].answer &&
-      answFive === expressions[4].answer
+      first === expressions[0].answer &&
+      second === expressions[1].answer &&
+      third === expressions[2].answer &&
+      fourth === expressions[3].answer &&
+      fifth === expressions[4].answer
     ) {
       setFlag(true)
     } else {
@@ -128,7 +128,7 @@ const Home = ({ history }) => {
         <Col
           as='button'
           type='submit'
-          disabled={!user}
+          disabled={!user && expressions.length === 0}
           md={4}
           onClick={confirmHandler}
           className='sbg mb-5'
