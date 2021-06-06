@@ -32,7 +32,7 @@ const Result = () => {
           {title}
         </Link>
       </div>
-      <Image src={imgSrc} alt={imgSrc} fluid rounded />
+      <Image src={imgSrc} alt={imgSrc} fluid rounded className='images' />
     </Container>
   )
 }

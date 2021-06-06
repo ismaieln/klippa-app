@@ -28,9 +28,9 @@ const userSchema = mongoose.Schema(
     },
     playHistory: [
       {
-        total: { type: Number, require: false, default: 0 },
-        success: { type: Number, require: false, default: 0 },
-        fail: { type: Number, require: false, default: 0 },
+        total: { type: String, require: true, default: '0' },
+        success: { type: String, require: true, default: '0' },
+        fail: { type: String, require: true, default: '0' },
       },
     ],
   },

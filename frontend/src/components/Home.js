@@ -6,10 +6,10 @@ import fetchQuestions from '../Utils/fetchQuestions'
 
 import Exercises from './Exercises'
 import Loader from './Loader'
+import Message from './Message'
 import StopPlay from './StopPlay'
 
 const Home = ({ history }) => {
-  const [submitDisable, setSubmitDisable] = useState(false)
   const { total, success, fail, setFlag } = useContext(PlayCountContext)
 
   const {
@@ -60,7 +60,7 @@ const Home = ({ history }) => {
   const confirmHandler = (e) => {
     e.preventDefault()
     setLoading(true)
-    setSubmitDisable(true)
+
     if (
       first === expressions[0].answer &&
       second === expressions[1].answer &&
@@ -73,17 +73,17 @@ const Home = ({ history }) => {
       setFlag(false)
     }
     setLoading(false)
-  }
-
-  const submitHandler = (e) => {
-    e.preventDefault()
-    setSubmitDisable(false)
-
     history.push('/result')
   }
 
   return (
     <Container>
+      {!user && (
+        <div className='blink'>
+          <h2>Please Login To Start The Race </h2>
+        </div>
+      )}
+{user &&(
       <Row>
         <Button
           variant='info'
@@ -94,6 +94,7 @@ const Home = ({ history }) => {
           Get Questions
         </Button>
       </Row>
+)}
       {playCount > 5 && <StopPlay />}
       {loading && <Loader />}
       {user && (
@@ -134,16 +135,6 @@ const Home = ({ history }) => {
           className='sbg mb-5'
         >
           <strong className='text-info'>Confirm</strong>
-        </Col>
-        <Col md={4} className='sbg text-center'>
-          <Button
-            disabled={!submitDisable}
-            type='submit'
-            onClick={submitHandler}
-            className='sbg mb-5 bg-light'
-          >
-            <strong className='text-info'>Submit</strong>
-          </Button>
         </Col>
       </Row>
     </Container>
