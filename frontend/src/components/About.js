@@ -1,40 +1,27 @@
 import React from 'react'
-import { Container } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Button, Container } from 'react-bootstrap'
 
-const About = () => {
+const About = ({history}) => {
+  const goTo=()=>history.goBack()
   return (
     <Container>
       <div className='py-3'>
-        <Link to='/' className='text-decoration-none'>
+        <Button onClick={goTo} className='text-decoration-none bg-none'>
           Go Back
-        </Link>
+        </Button>
       </div>
-      <h1>This is About</h1>
       <Container className='p-3'>
+      <h1>The Game</h1>
         <p>
-          Create a basic calculator React app. The app needs to have a header
-          for a logo and a menu. On the first screen of this app, the app
-          selects a random calculation from a database of 5 different. For
-          example a calculation could be: 3 * 6 . You can make the 5
-          calculations as complicated as you want. You can use a database of
-          choice. Also store a hash of each calculation in the database. In the
-          interface, list the 5 calculations and highlight the selected
-          calculation per session. Besides the calculation there should be an
-          input field in the database, which the user can use to give the answer
-          to the calculation. In the example above, the answer should be 18.
-          Next to the input field there should be a submit button to send in an
-          answer. If the user submits the submit button and the answer is
-          correct, send the user to a thank you page in the app (use a funny GIF
-          on the thank you page). From the thank you page he can go to the
-          default page again to get a new random calculation and go again. If
-          the answer is wrong, the user should get a nice notification that his
-          answer is not correct and that he should try again. The maximum amount
-          of tries is 3. If the user tries more than 3 times, the user failed
-          and is not allowed to try again. Make sure you store in the database
-          how many tries a user does before he gets the answer correct. Also
-          make sure to store, which questions the user got right or wrong. The
-          webpage can be used by multiple people.
+        After you log in, you will choose five equations, by pressing the <strong>Get New Questions</strong> button, so, type the answers on the second side of the equation.
+<br/>The game is very simple, you just have to learn something about math.<br/>
+You have three tries for each group of questions, the result will be registered on your database.<br/>
+So enjoy this beautiful adventure
+        </p>
+      <h1>The Creator</h1>
+        <p>
+        This project has been worked on as part of the post-graduation training for <strong>Hack Your Future.</strong><br/>
+This is the effort of one student, taking into account the observations of HYF's mentors.<br/>
         </p>
       </Container>
     </Container>

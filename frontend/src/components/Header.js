@@ -3,10 +3,10 @@ import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { GlobalContext } from '../hooks/GlobalContext'
 import { PlayCountContext } from '../hooks/PlayCountContext'
-import fetchQuestions from '../Utils/fetchQuestions'
+
 
 const Header = () => {
-  const { user, setUser, setFirst, setSecond, setThird, setFourth, setFifth,setExpressions, } =
+  const { user, setUser, setFirst, setSecond, setThird, setFourth, setFifth, setExpressions, } =
     useContext(GlobalContext)
   const { setTotal, setSuccess, setFail } = useContext(PlayCountContext)
 
@@ -24,17 +24,10 @@ const Header = () => {
     setTotal('')
     setSuccess('')
     setFail('')
+    setExpressions([])
   }
 
-  const getQuestions = async () => {
-    const q = await fetchQuestions()
-    setExpressions(q)
-    setFirst('')
-    setSecond('')
-    setThird('')
-    setFourth('')
-    setFifth('')
-  }
+
 
   return (
     <header>
@@ -61,16 +54,21 @@ const Header = () => {
             id='basic-navbar-nav'
             className='justify-content-end'
           >
+
             <Nav className='ml-auto'>
+              {user && (
+                <LinkContainer to='/play'><Nav.Link>Play</Nav.Link></LinkContainer>
+              )
+              }
               {user ? (
-                
                 <NavDropdown title={user.name} id='username'>
                   <LinkContainer to='/profile'>
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
-                  <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
-                  </NavDropdown.Item>
+                  <LinkContainer to='/'>
+                    <NavDropdown.Item onClick={logoutHandler}>
+                      Logout
+                  </NavDropdown.Item></LinkContainer>
                 </NavDropdown>
               ) : (
                 <LinkContainer to='/login'>

@@ -1,18 +1,17 @@
 import React, { useContext } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Button, Col, Container, Row } from 'react-bootstrap'
 
-import { Link } from 'react-router-dom'
 import { GlobalContext } from '../hooks/GlobalContext'
 import FormContainer from './FormContainer'
 
-const Profile = () => {
+const Profile = ({history}) => {
   const { user } = useContext(GlobalContext)
   return (
     <FormContainer>
       <div className='py-3'>
-        <Link to='/' className='text-decoration-none'>
+        <Button onClick={()=>history.goBack()} className='text-decoration-none'>
           Go Back
-        </Link>
+        </Button>
       </div>
       {user && (
         <Container>

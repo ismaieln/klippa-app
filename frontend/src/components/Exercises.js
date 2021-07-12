@@ -7,7 +7,7 @@ const Exercises = ({ id, expression, inState }) => {
   const [valueTyped] = useAnswer(id)
 
   return (
-    <Row className='my-3 justify-content-between mx-auto px-2' key={id}>
+    <Row className='my-3 justify-content-between mx-auto px-2 align-items-center' key={id}>
       <Col md={4} xs={5} className='rounded py-2 my-auto sbq'>
         <strong>{expression}</strong>
       </Col>

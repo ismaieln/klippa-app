@@ -28,11 +28,11 @@ const Result = () => {
   return (
     <Container>
       <div className='py-3' onClick={addState}>
-        <Link to='/' className='text-decoration-none'>
+        <Link to='/play' className='text-decoration-none'>
           {title}
         </Link>
       </div>
-      <Image src={imgSrc} alt={imgSrc} fluid rounded className='images' />
+      <Image src={imgSrc} alt={imgSrc} fluid rounded  />
     </Container>
   )
 }
