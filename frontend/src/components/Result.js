@@ -4,20 +4,23 @@ import { Link } from 'react-router-dom'
 import { PlayCountContext } from '../hooks/PlayCountContext'
 
 const Result = () => {
-  const { total, setTotal, success, setSuccess, fail, setFail, flag } =
+  const { total, setTotal, success, setSuccess, fail, setFail, flag, playCount, setPlayCount, } =
     useContext(PlayCountContext)
 
-  let imgSrc, title
+  let imgSrc, title,textA
   if (flag) {
-    imgSrc = '/images/checkmark.jpg'
+    imgSrc = '/images/excited-boy.png'
     title = 'Go Back'
+    textA='Yes, That is Correct'
   } else {
-    imgSrc = '/images/wrong.jpg'
+    imgSrc = '/images/counting.png'
     title = 'Try Again'
+    textA='No, That is Wrong'
   }
 
   const addState = () => {
     setTotal(total + 1)
+    setPlayCount(playCount+1)
     if (flag) {
       setSuccess(success + 1)
     } else {
@@ -32,6 +35,7 @@ const Result = () => {
           {title}
         </Link>
       </div>
+      <h2>{textA}</h2>
       <Image src={imgSrc} alt={imgSrc} fluid rounded  />
     </Container>
   )

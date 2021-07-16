@@ -9,6 +9,7 @@ import About from './components/About'
 import Profile from './components/Profile'
 import Register from './components/Register'
 import Play from './components/Play'
+import StopPlay from './components/StopPlay'
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <Route path='/login' component={LogIn} />
           <Route path='/register' component={Register} />
           <Route path='/profile' component={Profile} />
+          <Route path='/StopPlay' component={StopPlay} />
         </Container>
       </main>
       <Footer />

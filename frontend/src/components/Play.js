@@ -6,10 +6,10 @@ import fetchQuestions from '../Utils/fetchQuestions'
 
 import Exercises from './Exercises'
 import Loader from './Loader'
-import StopPlay from './StopPlay'
+
 
 const Play = ({ history }) => {
-    const { total, success, fail, setFlag } = useContext(PlayCountContext)
+    const { total, success, fail, setFlag, setFail, } = useContext(PlayCountContext)
 
     const {
         first,
@@ -24,7 +24,6 @@ const Play = ({ history }) => {
         setFifth,
         loading,
         setLoading,
-        playCount,
         expressions,
         setExpressions,
         user,
@@ -38,6 +37,10 @@ const Play = ({ history }) => {
     const playInfo = [total, success, fail]
 
     localStorage.setItem('playHistory', JSON.stringify(playInfo))
+
+if(fail >2){
+    history.push('./StopPlay')
+}
 
     if (!user) {
         const userInfo = localStorage.getItem('userInfo')
@@ -54,6 +57,7 @@ const Play = ({ history }) => {
         setThird('')
         setFourth('')
         setFifth('')
+        setFail(0)
     }
 
     const confirmHandler = (e) => {
@@ -81,13 +85,13 @@ const Play = ({ history }) => {
                 <Row className='p-1 text-info'>
                     Welcome {user.name}
                 </Row>}
-            {playCount > 5 && <StopPlay />}
+            {/* {playCount > 2 && <StopPlay />} */}
             {loading && <Loader />}
             {user && (
                 <Container>
                     <Row>
                         <Col>
-                            <h3 className='px-2 py-4 sbg'>Let's Play</h3>
+                            <h3 className='px-2 py-4 '>Let's Think</h3>
                         </Col>
                         <Col className='text-end'>
                             <Button

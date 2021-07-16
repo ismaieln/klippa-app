@@ -8,7 +8,7 @@ import { PlayCountContext } from '../hooks/PlayCountContext'
 const Header = () => {
   const { user, setUser, setFirst, setSecond, setThird, setFourth, setFifth, setExpressions, } =
     useContext(GlobalContext)
-  const { setTotal, setSuccess, setFail } = useContext(PlayCountContext)
+  const { setTotal, setSuccess, setFail, setPlayCount, } = useContext(PlayCountContext)
 
   const logoutHandler = () => {
     localStorage.removeItem('userInfo')
@@ -25,6 +25,8 @@ const Header = () => {
     setSuccess('')
     setFail('')
     setExpressions([])
+    setPlayCount(0)
+  
   }
 
 
@@ -49,7 +51,7 @@ const Header = () => {
               />
             </Navbar.Brand>
           </LinkContainer>
-          <Navbar.Toggle aria-controls='basic-navbar-nav' />
+          <Navbar.Toggle aria-controls='basic-navbar-nav'/>
           <Navbar.Collapse
             id='basic-navbar-nav'
             className='justify-content-end'

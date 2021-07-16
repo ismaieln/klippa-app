@@ -10,7 +10,7 @@ const StoreProvider = ({ children }) => {
   const [fifth, setFifth] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const [playCount, setPlayCount] = useState(0)
+  
   const [user, setUser] = useState('')
   const [expressions, setExpressions] = useState([])
 
@@ -28,9 +28,7 @@ const StoreProvider = ({ children }) => {
     loading,
     setLoading,
     error,
-    setError,
-    playCount,
-    setPlayCount,
+    setError,    
     user,
     setUser,
     expressions,
