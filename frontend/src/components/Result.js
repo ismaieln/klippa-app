@@ -1,12 +1,16 @@
 import React, { useContext } from 'react'
 import { Container, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { GlobalContext } from '../hooks/GlobalContext'
 import { PlayCountContext } from '../hooks/PlayCountContext'
 
-const Result = () => {
+const Result = ({ history }) => {
+  const { user } = useContext(GlobalContext)
   const { total, setTotal, success, setSuccess, fail, setFail, flag, playCount, setPlayCount, } =
     useContext(PlayCountContext)
-
+if(!user){
+  history.push('/')
+}
   let imgSrc, title,textA
   if (flag) {
     imgSrc = '/images/excited-boy.png'
@@ -36,7 +40,9 @@ const Result = () => {
         </Link>
       </div>
       <h2>{textA}</h2>
-      <Image src={imgSrc} alt={imgSrc} fluid rounded  />
+
+    <div>
+      <Image src={imgSrc} alt={imgSrc} fluid rounded className='images' /></div>
     </Container>
   )
 }

@@ -47,6 +47,7 @@ if(fail >2){
             ? JSON.parse(localStorage.getItem('userInfo'))
             : null
         setUser(userInfo)
+        history.push('/')
     }
 
     const getQuestions = async () => {

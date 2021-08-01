@@ -82,4 +82,24 @@ main {
 }
 
 .images {
+  animation: bigger 4s linear infinite;
+  position: relative;
+}
+
+@keyframes bigger {
+  0% {
+    left: 0px;
+  }
+  25% {
+    left: 100px;
+  }
+  50% {
+    left: 200px;
+  }
+  75% {
+    left: 100px;
+  }
+  100% {
+    left: 0px;
+  }
 }
