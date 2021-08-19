@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Container, Image } from 'react-bootstrap'
+import { Container, Image, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { GlobalContext } from '../hooks/GlobalContext'
 import { PlayCountContext } from '../hooks/PlayCountContext'
@@ -19,7 +19,7 @@ if(!user){
   } else {
     imgSrc = '/images/counting.png'
     title = 'Try Again'
-    textA='No, That is Wrong'
+    textA='No, At least one of the answers was Wrong'
   }
 
   const addState = () => {
@@ -39,10 +39,10 @@ if(!user){
           {title}
         </Link>
       </div>
-      <h2>{textA}</h2>
-
-    <div>
-      <Image src={imgSrc} alt={imgSrc} fluid rounded className='images' /></div>
+      <Row className="text-center">
+      <h2 fluid>{textA}</h2></Row>
+   <Row className="text-center">
+      <Image src={imgSrc} alt={imgSrc} fluid rounded className='images' /></Row>
     </Container>
   )
 }

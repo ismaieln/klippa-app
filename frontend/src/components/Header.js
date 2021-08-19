@@ -57,13 +57,13 @@ const Header = () => {
             className='justify-content-end'
           >
 
-            <Nav className='ml-auto'>
+            <Nav className='ml-auto' align='end'>
               {user && (
                 <LinkContainer to='/play'><Nav.Link>Play</Nav.Link></LinkContainer>
               )
               }
               {user ? (
-                <NavDropdown title={user.name} id='username'>
+                <NavDropdown title={user.name} id='username' >
                   <LinkContainer to='/profile'>
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>

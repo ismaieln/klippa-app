@@ -90,14 +90,11 @@ if(fail >2){
             {loading && <Loader />}
             {user && (
                 <Container>
-                    <Row>
-                        <Col>
-                            <h3 className='px-2 py-4 '>Let's Think</h3>
-                        </Col>
-                        <Col className='text-end'>
+                    <Row>                        
+                        <Col align='center'>
                             <Button
                                 variant='info'
-                                className='sbga'
+                                className='sbg'
                                 onClick={getQuestions}
                             >Get New Questions
                             </Button>
@@ -119,14 +116,12 @@ if(fail >2){
                                 />
                             ))}
                             <Row className='px-3 justify-content-center'>
-                                <Col
-                                    as='button'
-                                    type='submit'
+                                <Col className='text-center'>
+                                <Button type='submit'
                                     md={4}
                                     onClick={confirmHandler}
-                                    className='sbg mb-5'
-                                >
-                                    <strong className='text-info'>Check The Result</strong>
+                                    className='sbg mb-5'>
+                                    <strong className='text-info'>Check The Result</strong></Button>
                                 </Col>
                             </Row>
                         </>
