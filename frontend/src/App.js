@@ -16,7 +16,7 @@ const App = () => {
     <Router>
       <Header />
       <main>
-        <Container className='home'>
+        <div className='home'>
           <Route path='/' component={Home} exact />
           <Route path='/play' component={Play} />
           <Route path='/result' component={Result} />
@@ -25,7 +25,7 @@ const App = () => {
           <Route path='/register' component={Register} />
           <Route path='/profile' component={Profile} />
           <Route path='/StopPlay' component={StopPlay} />
-        </Container>
+        </div>
       </main>
       <Footer />
     </Router>

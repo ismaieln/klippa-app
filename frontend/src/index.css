@@ -79,15 +79,22 @@ main {
   /* border: 1px solid black; */
 }
 
-/* @media only screen and (min-width: 768px) {
+@media only screen and (max-width: 1025px) {
   main {
-    padding: 1rem;
+    padding: 0.5rem;
   }
 
   .home {
-    padding: 1rem;
-    max-width: 80%;
+    padding: 0.5rem;
+    max-width: 100%;
   }
 }
+@media only screen and (max-width: 765px) {
+  main {
+    padding: 0.2;
+  }
 
- */
+  .home {
+    padding: 0;
+  }
+}
