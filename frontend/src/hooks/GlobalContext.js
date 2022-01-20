@@ -10,9 +10,11 @@ const StoreProvider = ({ children }) => {
   const [fifth, setFifth] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  
+
   const [user, setUser] = useState('')
   const [expressions, setExpressions] = useState([])
+
+  const [difficulty, setDifficulty] = useState('easy')
 
   const store = {
     first,
@@ -28,11 +30,13 @@ const StoreProvider = ({ children }) => {
     loading,
     setLoading,
     error,
-    setError,    
+    setError,
     user,
     setUser,
     expressions,
     setExpressions,
+    difficulty,
+    setDifficulty,
   }
   return (
     <GlobalContext.Provider value={store}>{children}</GlobalContext.Provider>

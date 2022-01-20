@@ -20,8 +20,18 @@ const users = [
     ],
   },
   {
-    name: 'If Statement',
-    email: 'i@example.com',
+    name: 'Ladybug',
+    email: 'lady@example.com',
+    password: bcrypt.hashSync('123', 10),
+  },
+  {
+    name: 'North Star',
+    email: 'north@example.com',
+    password: bcrypt.hashSync('123', 10),
+  },
+  {
+    name: 'Polar Bear',
+    email: 'polar@example.com',
     password: bcrypt.hashSync('123', 10),
   },
 ]

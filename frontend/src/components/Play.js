@@ -1,5 +1,6 @@
+import e from 'express'
 import React, { useContext } from 'react'
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import { Button, ButtonGroup, Col, Container, Row } from 'react-bootstrap'
 import { GlobalContext } from '../hooks/GlobalContext'
 import { PlayCountContext } from '../hooks/PlayCountContext'
 import fetchQuestions from '../Utils/fetchQuestions'
@@ -28,6 +29,8 @@ const Play = ({ history }) => {
     setExpressions,
     user,
     setUser,
+    difficulty,
+    setDifficulty,
   } = useContext(GlobalContext)
 
   const inState = [first, second, third, fourth, fifth]
@@ -86,6 +89,30 @@ const Play = ({ history }) => {
       {loading && <Loader />}
       {user && (
         <Container>
+          <Row>
+            <Col align='center'>
+              <ButtonGroup className='py-2'>
+                <Button
+                  value='easy'
+                  onClick={(e) => setDifficulty(e.target.value)}
+                >
+                  Easy
+                </Button>
+                <Button
+                  value='medium'
+                  onClick={(e) => setDifficulty(e.target.value)}
+                >
+                  Medium
+                </Button>
+                <Button
+                  value='hard'
+                  onClick={(e) => setDifficulty(e.target.value)}
+                >
+                  Hard
+                </Button>
+              </ButtonGroup>
+            </Col>
+          </Row>
           <Row>
             <Col align='center'>
               <Button variant='info' className='sbg' onClick={getQuestions}>
