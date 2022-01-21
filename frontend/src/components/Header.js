@@ -4,11 +4,19 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { GlobalContext } from '../hooks/GlobalContext'
 import { PlayCountContext } from '../hooks/PlayCountContext'
 
-
 const Header = () => {
-  const { user, setUser, setFirst, setSecond, setThird, setFourth, setFifth, setExpressions, } =
-    useContext(GlobalContext)
-  const { setTotal, setSuccess, setFail, setPlayCount, } = useContext(PlayCountContext)
+  const {
+    user,
+    setUser,
+    setFirst,
+    setSecond,
+    setThird,
+    setFourth,
+    setFifth,
+    setExpressions,
+  } = useContext(GlobalContext)
+  const { setTotal, setSuccess, setFail, setPlayCount } =
+    useContext(PlayCountContext)
 
   const logoutHandler = () => {
     localStorage.removeItem('userInfo')
@@ -26,10 +34,7 @@ const Header = () => {
     setFail('')
     setExpressions([])
     setPlayCount(0)
-  
   }
-
-
 
   return (
     <header>
@@ -51,26 +56,27 @@ const Header = () => {
               />
             </Navbar.Brand>
           </LinkContainer>
-          <Navbar.Toggle aria-controls='basic-navbar-nav'/>
+          <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse
             id='basic-navbar-nav'
             className='justify-content-end'
           >
-
             <Nav className='ml-auto' align='end'>
               {user && (
-                <LinkContainer to='/play'><Nav.Link>Play</Nav.Link></LinkContainer>
-              )
-              }
+                <LinkContainer to='/play'>
+                  <Nav.Link>Play</Nav.Link>
+                </LinkContainer>
+              )}
               {user ? (
-                <NavDropdown title={user.name} id='username' >
+                <NavDropdown title={user.name} id='username'>
                   <LinkContainer to='/profile'>
                     <NavDropdown.Item>Profile</NavDropdown.Item>
                   </LinkContainer>
                   <LinkContainer to='/'>
                     <NavDropdown.Item onClick={logoutHandler}>
                       Logout
-                  </NavDropdown.Item></LinkContainer>
+                    </NavDropdown.Item>
+                  </LinkContainer>
                 </NavDropdown>
               ) : (
                 <LinkContainer to='/login'>

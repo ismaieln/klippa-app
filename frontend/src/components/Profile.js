@@ -4,12 +4,15 @@ import { Button, Col, Container, Row } from 'react-bootstrap'
 import { GlobalContext } from '../hooks/GlobalContext'
 import FormContainer from './FormContainer'
 
-const Profile = ({history}) => {
+const Profile = ({ history }) => {
   const { user } = useContext(GlobalContext)
   return (
     <FormContainer>
       <div className='py-3'>
-        <Button onClick={()=>history.goBack()} className='text-decoration-none'>
+        <Button
+          onClick={() => history.goBack()}
+          className='text-decoration-none'
+        >
           Go Back
         </Button>
       </div>

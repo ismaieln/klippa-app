@@ -11,7 +11,7 @@ const router = express.Router()
 
 router.get('/', getUsers)
 
-router.patch('/:id', updateUser)
+router.put('/:id', updateUser)
 
 router.post('/login', login)
 

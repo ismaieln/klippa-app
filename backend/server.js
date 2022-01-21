@@ -18,8 +18,8 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(express.json())
 
-app.use('/api/expression/', expressionsRoutes)
-app.use('/api/user', userRoutes)
+app.use('/expression/', expressionsRoutes)
+app.use('/user', userRoutes)
 
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))

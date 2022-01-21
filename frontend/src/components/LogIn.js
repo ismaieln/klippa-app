@@ -21,7 +21,7 @@ const LogIn = ({ history }) => {
       try {
         setLoading(true)
         const { data } = await axios.post(
-          '/api/user/login',
+          '/user/login',
           { email, password },
           { headers: { 'Content-Type': 'application/json' } }
         )

@@ -1,6 +1,12 @@
-import e from 'express'
 import React, { useContext } from 'react'
-import { Button, ButtonGroup, Col, Container, Row } from 'react-bootstrap'
+import {
+  Button,
+  Col,
+  Container,
+  Dropdown,
+  DropdownButton,
+  Row,
+} from 'react-bootstrap'
 import { GlobalContext } from '../hooks/GlobalContext'
 import { PlayCountContext } from '../hooks/PlayCountContext'
 import fetchQuestions from '../Utils/fetchQuestions'
@@ -54,7 +60,7 @@ const Play = ({ history }) => {
   }
 
   const getQuestions = async () => {
-    const q = await fetchQuestions()
+    const q = await fetchQuestions(difficulty)
     setExpressions(q)
     setFirst('')
     setSecond('')
@@ -85,32 +91,32 @@ const Play = ({ history }) => {
   return (
     <Container>
       {user && <Row className='p-1 text-info'>Welcome {user.name}</Row>}
-      {/* {playCount > 2 && <StopPlay />} */}
+
       {loading && <Loader />}
       {user && (
         <Container>
           <Row>
             <Col align='center'>
-              <ButtonGroup className='py-2'>
-                <Button
-                  value='easy'
-                  onClick={(e) => setDifficulty(e.target.value)}
-                >
-                  Easy
-                </Button>
-                <Button
-                  value='medium'
-                  onClick={(e) => setDifficulty(e.target.value)}
-                >
-                  Medium
-                </Button>
-                <Button
-                  value='hard'
-                  onClick={(e) => setDifficulty(e.target.value)}
-                >
-                  Hard
-                </Button>
-              </ButtonGroup>
+              <DropdownButton
+                id='dropdown-basic-button'
+                variant='info'
+                title={<strong>{difficulty.toUpperCase()}</strong>}
+                onSelect={(selectedLevel) => setDifficulty(selectedLevel)}
+              >
+                <div className='difficulty'>
+                  <Dropdown.Item eventKey='easy'>
+                    <strong>EASY</strong>
+                  </Dropdown.Item>
+                  <Dropdown.Divider />
+                  <Dropdown.Item eventKey='medium'>
+                    <strong>MEDIUM</strong>
+                  </Dropdown.Item>
+                  <Dropdown.Divider />
+                  <Dropdown.Item eventKey='hard'>
+                    <strong>HARD</strong>
+                  </Dropdown.Item>
+                </div>
+              </DropdownButton>
             </Col>
           </Row>
           <Row>
