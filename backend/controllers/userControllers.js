@@ -64,17 +64,18 @@ export const register = expressAsyncHandler(async (req, res) => {
   }
 })
 
-// update user PUT
+// update user PATCH
 export const updateUser = expressAsyncHandler(async (req, res) => {
-  const { playHistory } = req.body
-  const userId = req.params.id
-  console.log(playHistory)
+  const { user } = req.body
+  const userId = user._id
+
   const updateUser = await User.findById(userId)
   const record = updateUser.playHistory[0]
   if (updateUser) {
-    record.total = playHistory[0].total
-    record.success = playHistory[0].success
-    record.fail = playHistory[0].fail
+    record.total = user.playHistory[0].total
+    record.success = user.playHistory[0].success
+    record.fail = user.playHistory[0].fail
+    await User.save()
     console.log(updateUser)
   } else {
     console.log('ismaielN')

@@ -6,6 +6,9 @@ import FormContainer from './FormContainer'
 
 const Profile = ({ history }) => {
   const { user } = useContext(GlobalContext)
+  if (!user) {
+    history.push('/')
+  }
   return (
     <FormContainer>
       <div className='py-3'>

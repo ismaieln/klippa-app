@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const updateRecord = async (user, playInfo) => {
+const updateRecord = async (user, total, success, fail) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -8,9 +8,9 @@ const updateRecord = async (user, playInfo) => {
     },
   }
 
-  const { data } = await axios.put(
+  const { data } = await axios.patch(
     `/user`,
-    (user.playHistory[0] = { playInfo }),
+    (user.playHistory[0] = { total, success, fail }),
     config
   )
 

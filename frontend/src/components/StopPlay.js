@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Col, Container, Image, Row } from 'react-bootstrap'
+import { GlobalContext } from '../hooks/GlobalContext'
 
-const StopPlay = () => {
+const StopPlay = ({ history }) => {
+  const { user } = useContext(GlobalContext)
+  if (!user) {
+    history.push('/')
+  }
   return (
     <Container>
       <Row className='justify-content-md-center'>
